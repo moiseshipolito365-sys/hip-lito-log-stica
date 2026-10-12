@@ -27,7 +27,7 @@ export function EmptyState({ icon: Icon, title, description, action }: { icon: L
   );
 }
 
-export function Loading({ label = "Carregando..." }: { label?: string }) {
+export function Loading({ label = "Carregando..." }: { label?: string | undefined }) {
   return (
     <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground">
       <Loader2 className="h-5 w-5 animate-spin" /> {label}
@@ -48,6 +48,6 @@ const tone: Record<string, string> = {
   rascunho: "bg-secondary text-secondary-foreground",
 };
 
-export function StatusBadge({ value, label }: { value: string; label?: string }) {
+export function StatusBadge({ value, label }: { value: string; label?: string | undefined }) {
   return <Badge variant="outline" className={cn("font-medium", tone[value])}>{label ?? value}</Badge>;
 }
