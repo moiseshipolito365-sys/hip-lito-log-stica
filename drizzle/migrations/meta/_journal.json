@@ -8,6 +8,20 @@
       "when": 1791584632377,
       "tag": "0000_hipolito_core",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791766323899,
+      "tag": "0001_finance_and_sku",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791766335942,
+      "tag": "0002_fix_log_activity",
+      "breakpoints": true
     }
   ]
 }

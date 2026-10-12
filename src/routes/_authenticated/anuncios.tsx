@@ -70,7 +70,7 @@ function Anuncios() {
         ...f, price: f.price.trim() ? parseMoney(f.price) ?? NaN : 0,
         photos: f.photos.split(/\n+/).map((s) => s.trim()).filter(Boolean),
       });
-      if (!p.success) throw new Error(p.error.issues[0].message);
+      if (!p.success) throw new Error(p.error.issues[0]?.message ?? "Dados inválidos");
       const row = { ...p.data, description: p.data.description || null, category: p.data.category || null, product_id: f.product_id === "none" ? null : f.product_id };
       const { error } = editing ? await supabase.from("listings").update(row).eq("id", editing.id) : await supabase.from("listings").insert(row);
       if (error) throw error;

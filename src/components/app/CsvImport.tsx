@@ -28,7 +28,7 @@ export function CsvImport({ open, onOpenChange }: { open: boolean; onOpenChange:
   const invalid = rows.length - valid.length;
 
   async function onFile(file: File) {
-    if (file.size > 2_000_000) return toast.error("Arquivo maior que 2 MB");
+    if (file.size > 2_000_000) return void toast.error("Arquivo maior que 2 MB");
     const text = await file.text();
     const res = validateRows(parseCsv(text));
     setHeaderError(res.headerError);
@@ -52,7 +52,7 @@ export function CsvImport({ open, onOpenChange }: { open: boolean; onOpenChange:
     }));
     const { error } = await supabase.from("products").insert(payload);
     setSaving(false);
-    if (error) return toast.error(errMsg(error));
+    if (error) return void toast.error(errMsg(error));
     toast.success(`${payload.length} produto(s) importado(s)`);
     qc.invalidateQueries({ queryKey: ["products"] });
     qc.invalidateQueries({ queryKey: ["activities"] });

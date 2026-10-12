@@ -29,7 +29,7 @@ describe("importação CSV", () => {
   });
   it("aponta linhas inválidas", () => {
     const { rows } = validateRows(parseCsv("nome;custo;estoque\nCaneca;10,00;5\n;abc;-1"));
-    expect(rows[0].errors).toEqual([]);
-    expect(rows[1].errors.length).toBe(3);
+    expect(rows[0]?.errors).toEqual([]);
+    expect(rows[1]?.errors.length).toBe(3);
   });
 });

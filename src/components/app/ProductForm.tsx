@@ -55,7 +55,7 @@ export function ProductForm({ open, onOpenChange, product }: { open: boolean; on
         sale_price: f.price.trim() ? parseMoney(f.price) ?? NaN : 0,
         stock: f.stock.trim() ? Number(f.stock) : null,
       });
-      if (!parsed.success) throw new Error(parsed.error.issues[0].message);
+      if (!parsed.success) throw new Error(parsed.error.issues[0]?.message ?? "Dados inválidos");
       const d = parsed.data;
       const row = {
         name: d.name, description: d.description || null, image_url: d.image_url || null, category: d.category || null,

@@ -42,17 +42,17 @@ function AuthPage() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const parsed = schema.safeParse({ email, password });
-    if (!parsed.success) return toast.error(parsed.error.issues[0].message);
+    if (!parsed.success) return void toast.error(parsed.error.issues[0]?.message ?? "Dados inválidos");
     setLoading(true);
     if (mode === "login") {
       const { error } = await supabase.auth.signInWithPassword(parsed.data);
       setLoading(false);
-      if (error) return toast.error(error.message === "Invalid login credentials" ? "E-mail ou senha incorretos" : error.message);
+      if (error) return void toast.error(error.message === "Invalid login credentials" ? "E-mail ou senha incorretos" : error.message);
       navigate({ to: "/painel", replace: true });
     } else {
       const { error } = await supabase.auth.signUp({ ...parsed.data, options: { emailRedirectTo: window.location.origin + "/painel" } });
       setLoading(false);
-      if (error) return toast.error(error.message);
+      if (error) return void toast.error(error.message);
       toast.success("Conta criada! Confira seu e-mail para confirmar o cadastro.");
       setMode("login");
     }
@@ -60,7 +60,7 @@ function AuthPage() {
 
   async function google() {
     const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/auth" });
-    if (result.error) return toast.error("Não foi possível entrar com Google");
+    if (result.error) return void toast.error("Não foi possível entrar com Google");
     if (result.redirected) return;
     navigate({ to: "/painel", replace: true });
   }

@@ -41,6 +41,45 @@ export type Database = {
         }
         Relationships: []
       }
+      bank_transfers: {
+        Row: {
+          amount: number
+          created_at: string
+          external_id: string | null
+          id: string
+          notes: string | null
+          source: string
+          status: string
+          transferred_at: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          external_id?: string | null
+          id?: string
+          notes?: string | null
+          source?: string
+          status?: string
+          transferred_at?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          external_id?: string | null
+          id?: string
+          notes?: string | null
+          source?: string
+          status?: string
+          transferred_at?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       cost_settings: {
         Row: {
           fixed_fee: number
@@ -197,6 +236,86 @@ export type Database = {
             columns: ["supplier_id"]
             isOneToOne: false
             referencedRelation: "suppliers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sales: {
+        Row: {
+          advertising_cost: number
+          created_at: string
+          description: string
+          external_id: string | null
+          id: string
+          marketplace_fees: number
+          notes: string | null
+          other_costs: number
+          packaging_cost: number
+          payment_status: string
+          product_id: string | null
+          quantity: number
+          refunded_amount: number
+          released_at: string | null
+          shipping_cost: number
+          sold_at: string
+          source: string
+          unit_cost: number | null
+          unit_price: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          advertising_cost?: number
+          created_at?: string
+          description: string
+          external_id?: string | null
+          id?: string
+          marketplace_fees?: number
+          notes?: string | null
+          other_costs?: number
+          packaging_cost?: number
+          payment_status?: string
+          product_id?: string | null
+          quantity?: number
+          refunded_amount?: number
+          released_at?: string | null
+          shipping_cost?: number
+          sold_at?: string
+          source?: string
+          unit_cost?: number | null
+          unit_price: number
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          advertising_cost?: number
+          created_at?: string
+          description?: string
+          external_id?: string | null
+          id?: string
+          marketplace_fees?: number
+          notes?: string | null
+          other_costs?: number
+          packaging_cost?: number
+          payment_status?: string
+          product_id?: string | null
+          quantity?: number
+          refunded_amount?: number
+          released_at?: string | null
+          shipping_cost?: number
+          sold_at?: string
+          source?: string
+          unit_cost?: number | null
+          unit_price?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
             referencedColumns: ["id"]
           },
         ]
