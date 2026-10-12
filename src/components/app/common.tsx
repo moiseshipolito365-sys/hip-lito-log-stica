@@ -48,6 +48,6 @@ const tone: Record<string, string> = {
   rascunho: "bg-secondary text-secondary-foreground",
 };
 
-export function StatusBadge({ value, label }: { value: string; label: string }) {
-  return <Badge variant="outline" className={cn("font-medium", tone[value])}>{label}</Badge>;
+export function StatusBadge({ value, label }: { value: string; label?: string }) {
+  return <Badge variant="outline" className={cn("font-medium", tone[value])}>{label ?? value}</Badge>;
 }

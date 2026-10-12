@@ -51,7 +51,7 @@ function Fornecedores() {
   const save = useMutation({
     mutationFn: async () => {
       const p = schema.safeParse(f);
-      if (!p.success) throw new Error(p.error.issues[0].message);
+      if (!p.success) throw new Error(p.error.issues[0]?.message ?? "Dados inválidos");
       const row = { ...p.data, website: p.data.website || null, catalog_url: p.data.catalog_url || null, contact: p.data.contact || null, notes: p.data.notes || null };
       const { error } = editing ? await supabase.from("suppliers").update(row).eq("id", editing.id) : await supabase.from("suppliers").insert(row);
       if (error) throw error;

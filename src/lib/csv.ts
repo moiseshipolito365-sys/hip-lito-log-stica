@@ -79,7 +79,7 @@ const isUrl = (s: string) => /^https?:\/\/\S+$/i.test(s);
 
 export function validateRows(rows: string[][]): { rows: ImportRow[]; headerError?: string } {
   if (rows.length === 0) return { rows: [], headerError: "Arquivo vazio." };
-  const header = rows[0].map((h) => h.trim().toLowerCase());
+  const header = (rows[0] ?? []).map((h) => h.trim().toLowerCase());
   if (!header.includes("nome")) return { rows: [], headerError: 'Coluna obrigatória "nome" não encontrada no cabeçalho.' };
   const idx = (k: string) => header.indexOf(k);
   const get = (r: string[], k: string) => (idx(k) >= 0 ? (r[idx(k)] ?? "").trim() : "");
