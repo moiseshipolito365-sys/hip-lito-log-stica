@@ -175,6 +175,155 @@ export type Database = {
           },
         ]
       }
+      ml_connections: {
+        Row: {
+          connected_at: string
+          email: string | null
+          items_count: number | null
+          last_error: string | null
+          last_sync_at: string | null
+          ml_user_id: number
+          nickname: string | null
+          site_id: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          connected_at?: string
+          email?: string | null
+          items_count?: number | null
+          last_error?: string | null
+          last_sync_at?: string | null
+          ml_user_id: number
+          nickname?: string | null
+          site_id?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          connected_at?: string
+          email?: string | null
+          items_count?: number | null
+          last_error?: string | null
+          last_sync_at?: string | null
+          ml_user_id?: number
+          nickname?: string | null
+          site_id?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      ml_items: {
+        Row: {
+          available_quantity: number | null
+          category_id: string | null
+          currency_id: string | null
+          id: string
+          listing_type_id: string | null
+          ml_item_id: string
+          permalink: string | null
+          price: number | null
+          sold_quantity: number | null
+          status: string | null
+          synced_at: string
+          thumbnail: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          available_quantity?: number | null
+          category_id?: string | null
+          currency_id?: string | null
+          id?: string
+          listing_type_id?: string | null
+          ml_item_id: string
+          permalink?: string | null
+          price?: number | null
+          sold_quantity?: number | null
+          status?: string | null
+          synced_at?: string
+          thumbnail?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          available_quantity?: number | null
+          category_id?: string | null
+          currency_id?: string | null
+          id?: string
+          listing_type_id?: string | null
+          ml_item_id?: string
+          permalink?: string | null
+          price?: number | null
+          sold_quantity?: number | null
+          status?: string | null
+          synced_at?: string
+          thumbnail?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      ml_oauth_states: {
+        Row: {
+          code_verifier: string
+          created_at: string
+          redirect_uri: string
+          state: string
+          user_id: string
+        }
+        Insert: {
+          code_verifier: string
+          created_at?: string
+          redirect_uri: string
+          state: string
+          user_id: string
+        }
+        Update: {
+          code_verifier?: string
+          created_at?: string
+          redirect_uri?: string
+          state?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      ml_tokens: {
+        Row: {
+          access_token: string
+          expires_at: string
+          refresh_token: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          access_token: string
+          expires_at: string
+          refresh_token: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          access_token?: string
+          expires_at?: string
+          refresh_token?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_tokens_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "ml_connections"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
       products: {
         Row: {
           availability: string
