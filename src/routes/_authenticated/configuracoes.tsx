@@ -9,6 +9,7 @@ import { PageHeader, Loading } from "@/components/app/common";
 import { CostFields, COST_LABELS, MARKETPLACE_NOTICE, type CostForm } from "@/components/app/CostFields";
 import { settingsQuery, errMsg } from "@/lib/queries";
 import { parseMoney } from "@/lib/csv";
+import { MercadoLivreCard } from "@/components/app/MercadoLivreCard";
 
 export const Route = createFileRoute("/_authenticated/configuracoes")({
   head: () => ({ meta: [{ title: "Configurações — HipólitoLogística" }, { name: "description", content: "Configure seus custos padrão." }] }),
@@ -49,7 +50,8 @@ function Configuracoes() {
 
   return (
     <>
-      <PageHeader title="Configurações" description="Valores padrão usados na calculadora de lucro." />
+      <PageHeader title="Configurações" description="Integrações e valores padrão usados na calculadora de lucro." />
+      <div className="mb-6"><MercadoLivreCard /></div>
       <Card className="max-w-3xl shadow-card">
         <CardHeader>
           <CardTitle className="text-lg">Custos padrão por venda</CardTitle>
