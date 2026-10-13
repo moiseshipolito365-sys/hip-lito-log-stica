@@ -6,9 +6,9 @@ export const ML_AUTH_URL = "https://auth.mercadolivre.com.br/authorization";
 export const CALLBACK_PATH = "/api/public/mercadolivre/callback";
 
 export function mlConfig(origin?: string) {
-  const clientId = process.env.ML_CLIENT_ID;
-  const clientSecret = process.env.ML_CLIENT_SECRET;
-  const redirectUri = process.env.ML_REDIRECT_URI || (origin ? origin + CALLBACK_PATH : undefined);
+  const clientId = process.env['ML_CLIENT_ID'];
+  const clientSecret = process.env['ML_CLIENT_SECRET'];
+  const redirectUri = process.env['ML_REDIRECT_URI'] || (origin ? origin + CALLBACK_PATH : undefined);
   const missing = [!clientId && "ML_CLIENT_ID", !clientSecret && "ML_CLIENT_SECRET", !redirectUri && "ML_REDIRECT_URI"].filter(Boolean) as string[];
   return { clientId, clientSecret, redirectUri, missing };
 }
